@@ -1,0 +1,19 @@
+h1 order info
+
+h2 User
+p = @order.user.full_name
+p = @order.user.email
+p = @order.user.phone
+p = @order.user.address
+p = @order.user.post_code
+
+h2 Order
+p = @order.status
+p = @order.order_date
+p = @order.total_price
+- @order.order_details.each do |detail|
+  p = detail.product.name
+  p = detail.price
+  p = detail.quantity
+
+= link_to 'Edit', edit_admin_order_path(@order)

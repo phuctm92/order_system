@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    meta[content="text/html; charset=UTF-8" http-equiv="Content-Type"]
+  body
+    h1
+      | Hi, 
+      = @order.user.full_name.humanize
+    p
+      |  Your order's status at OrderSys was updated to 
+      = @order.status.humanize
+      | . Please check your order for more detail again.
+      br
+    p
+      | Thanks for joining and have a great day!

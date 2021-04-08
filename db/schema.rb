@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2021_04_08_103744) do
   create_table "orders", charset: "utf8mb4", force: :cascade do |t|
     t.integer "status", default: 0
     t.datetime "order_date"
-    t.float "total_price"
+    t.float "total_price", default: 0.0
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

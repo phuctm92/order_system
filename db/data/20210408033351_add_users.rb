@@ -1,9 +1,15 @@
 class AddUsers < ActiveRecord::Migration[6.1]
   def up
-    (1..20).each do |i|
+    User.create!(
+      email: 'admin@ordersys.com',
+      password: '123123',
+      role: 0
+    )
+
+    (1..5).each do |i|
       User.create!(
         email: "customer_#{i}@ordersys.com",
-        password: '123123123',
+        password: '123123',
         first_name: 'customer',
         last_name: i,
         phone: '0901234567',

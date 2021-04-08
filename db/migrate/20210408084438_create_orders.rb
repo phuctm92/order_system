@@ -3,7 +3,7 @@ class CreateOrders < ActiveRecord::Migration[6.1]
     create_table :orders do |t|
       t.integer :status, default: 0, index: true
       t.datetime :order_date
-      t.float :total_price
+      t.float :total_price, default: 0
       t.references :user, null: false
 
       t.timestamps

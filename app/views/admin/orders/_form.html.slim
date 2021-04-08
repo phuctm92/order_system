@@ -1,0 +1,11 @@
+= form_with(scope: order, url: admin_order_path(order), method: :patch) do |f|
+  div
+    = f.label :status
+    br
+    = f.select(:status, options_for_select(Order.statuses.collect {|s| [s.first.capitalize, s.first]}, order.status), {}, {class: ""} )
+    br
+    - order.errors.full_messages_for(:status).each do |message|
+      div
+        = message
+  div
+    = f.submit

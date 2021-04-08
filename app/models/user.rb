@@ -9,8 +9,6 @@ class User < ApplicationRecord
   enum role: %i[admin customer]
   after_initialize :set_default_role, if: :new_record?
 
-  scope :customers, -> { where(role: :customer) }
-
   def full_name
     "#{first_name} #{last_name}"
   end
@@ -18,6 +16,6 @@ class User < ApplicationRecord
   private
 
   def set_default_role
-    self.role ||= :customer
+    self.role ||= User.role[:customer]
   end
 end
