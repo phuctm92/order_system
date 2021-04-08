@@ -67,4 +67,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'settingslogic'
 gem 'slim-rails'
 
+gem 'data_migrate', '~> 6.7'
 gem 'devise', '~> 4.7', '>= 4.7.3'
+gem 'faker', '~> 2.17'
