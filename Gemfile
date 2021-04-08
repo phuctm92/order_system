@@ -47,6 +47,8 @@ group :development do
   gem 'rubocop', '~> 1.10', require: false
   gem 'rubocop-performance', '~> 1.9', '>= 1.9.2', require: false
   gem 'rubocop-rails', '~> 2.9', '>= 2.9.1', require: false
+
+  gem 'rails-erd', '~> 1.6', '>= 1.6.1'
 end
 
 group :test do
