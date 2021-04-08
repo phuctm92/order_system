@@ -7,6 +7,8 @@ class User < ApplicationRecord
   enum role: %i[admin customer]
   after_initialize :set_default_role, if: :new_record?
 
+  scope :customers, -> { where(role: :customer) }
+
   private
 
   def set_default_role
