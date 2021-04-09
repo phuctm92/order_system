@@ -1,14 +1,1 @@
 h1 Hello admin
-
-- if user_signed_in?
-  = link_to "Sign out", destroy_user_session_path, method: :delete
-
-table
-  tr
-    th Email
-    th First name
-    th Last name
-  - @users.each do |user|
-    tr
-      td = user.email
-      td = user.full_name

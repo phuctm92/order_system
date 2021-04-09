@@ -7,6 +7,8 @@ class Order < ApplicationRecord
   has_many :order_details, dependent: :delete_all
   has_many :products, through: :order_details
 
+  validates :status, presence: true
+
   after_initialize :set_default_values, if: :new_record?
 
   paginates_per 5
