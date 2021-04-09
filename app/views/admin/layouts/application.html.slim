@@ -9,10 +9,10 @@ html
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    h1 admin layout
+    = render 'navigation'
 
-    p = link_to 'Dashboard', admin_root_path
-    p = link_to 'Orders', admin_orders_path
-    - if user_signed_in?
-      = link_to "Sign out", destroy_user_session_path, method: :delete
-    = yield
+    .container-fluid
+      .row
+        = render 'sidebar'
+        main.col-md-9.ml-sm-auto.col-lg-10.pt-3.px-4[role="main"]
+          = yield

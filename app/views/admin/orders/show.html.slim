@@ -1,19 +1,54 @@
-h1 order info
+h1.heading
+  | Order Detail
+  = link_to 'Update Status', edit_admin_order_path(@order), class: 'btn btn-outline-primary ml20 right'
 
-h2 User
-p = @order.user.full_name
-p = @order.user.email
-p = @order.user.phone
-p = @order.user.address
-p = @order.user.post_code
+ul.list-group
+  li.list-group-item
+    .heading.bold User information
+    table.w_100.mt20
+      tr
+        th Full name:
+        td = @order.user.full_name
+      tr
+        th Email:
+        td = @order.user.email
+      tr
+        th Telephone:
+        td = @order.user.phone
+      tr
+        th Address:
+        td = @order.user.address
+      tr
+        th Post Code:
+        td = @order.user.post_code
 
-h2 Order
-p = @order.status
-p = @order.order_date
-p = @order.total_price
-- @order.order_details.each do |detail|
-  p = detail.product.name
-  p = detail.price
-  p = detail.quantity
+  li.list-group-item
+    .heading.bold Order information
+    table.w_100.mt20
+      tr
+        th Status:
+        td = @order.status.humanize
+      tr
+        th Order Date:
+        td = @order.order_date.strftime("%B %d, %Y")
+      tr
+        th Total Price:
+        td = @order.total_price
 
-= link_to 'Edit', edit_admin_order_path(@order)
+  li.list-group-item
+    .heading.bold Products
+    table.w_100.mt20.table.table-striped.table-sm
+      thead
+        tr
+          th Name
+          th Unit Price
+          th Quantity
+      tbody
+        - @order.order_details.each do |detail|
+          tr
+            td = detail.product.name
+            td = detail.price
+            td = detail.quantity
+
+.mt20
+  = link_to 'Back', admin_orders_path, class: 'btn btn-outline-primary'

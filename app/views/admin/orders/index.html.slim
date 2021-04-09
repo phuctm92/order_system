@@ -1,35 +1,33 @@
-h1 Order index
+h1 Orders List
+
 = form_tag(admin_orders_path, method: 'get') do
-  = text_field_tag 'search[email]', params['search'].try(:[], 'email')
-  = select_tag('search[status]', options_for_select(Order.statuses.collect {|s| [s.first.capitalize, s.first]}, params['search'].try(:[], 'status')), include_blank: true)
-  = submit_tag 'Search'
+  .input-group.mt-3.mb-3
+    .input-group-prepend
+      = select_tag('search[status]', options_for_select(Order.statuses.collect {|s| [s.first.humanize, s.first]}, params['search'].try(:[], 'status')), include_blank: true, class: 'custom-select')
+    = text_field_tag 'search[email]', params['search'].try(:[], 'email'), placeholder: 'User email', class:"form-control"
+    .input-group-append
+      = submit_tag 'Search', class: 'btn btn-success'
 
 - if @orders.present?
-  table
-    thead
-      tr
-        th ID
-        th Email
-        th Status
-        th Order date
-        th colspan="2" Action
-    tbody
-      - @orders.each do |order|
+  .table-responsive
+    table.table.table-striped.table-sm
+      thead
         tr
-          td
-            = order.id
-          td
-            = order.user.email
-          td
-            = order.status
-          td
-            = order.order_date
-          td
-            = link_to 'Show', admin_order_path(order)
-          td
-            = link_to 'Edit', edit_admin_order_path(order)
+          th #
+          th Email
+          th Status
+          th Order date
+          th colspan=2 Actions
+      tbody
+        - @orders.each do |order|
+          tr
+            td = order.id
+            td = order.user.email
+            td = order.status.humanize
+            td = order.order_date
+            td = link_to 'Show', admin_order_path(order)
+            td = link_to 'Edit', edit_admin_order_path(order)
 
   = paginate @orders
 - else
-  p
-    | no data
+  p No order

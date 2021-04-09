@@ -1,0 +1,10 @@
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  a.navbar-brand[href="#"]
+    | OrderSys
+  button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation"]
+    span.navbar-toggler-icon
+  #navbarsExample05.collapse.navbar-collapse
+    ul.navbar-nav.ml-auto
+      - if user_signed_in?
+        li.nav-item
+          = link_to "Sign out", destroy_user_session_path, method: :delete, class: 'nav-link'

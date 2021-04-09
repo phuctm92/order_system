@@ -1,11 +1,12 @@
 = form_with(scope: order, url: admin_order_path(order), method: :patch) do |f|
-  div
-    = f.label :status
-    br
-    = f.select(:status, options_for_select(Order.statuses.collect {|s| [s.first.capitalize, s.first]}, order.status), {}, {class: ""} )
-    br
-    - order.errors.full_messages_for(:status).each do |message|
-      div
-        = message
-  div
-    = f.submit
+  - order.errors.full_messages_for(:status).each do |message|
+    div
+      = message
+
+  .input-group
+    = f.select(:status, options_for_select(Order.statuses.collect {|s| [s.first.capitalize, s.first]}, order.status), {}, {class: "custom-select"} )
+    .input-group-append
+      = f.submit 'Update', class: 'btn btn-outline-secondary'
+
+.mt20
+  = link_to 'Back', admin_order_path(order), class: 'btn btn-outline-primary'
