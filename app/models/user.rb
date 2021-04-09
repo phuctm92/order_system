@@ -3,7 +3,7 @@ class User < ApplicationRecord
 
   has_many :orders, dependent: :delete_all
 
-  validates :email, presence: true, unique: true
+  validates :email, presence: true, uniqueness: true
   validates :password, presence: true
 
   after_initialize :set_default_role, if: :new_record?

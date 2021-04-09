@@ -10,4 +10,15 @@ html
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
     h1 main layout
+    .row
+      .col-xs-10.col-xs-offset-1
+        - flash.each do |type, msg|
+          - if type == "notice"
+            .alert.alert-success
+          - elsif type == "alert"
+            .alert.alert-danger
+
+          ul
+            li
+              = msg
     = yield
